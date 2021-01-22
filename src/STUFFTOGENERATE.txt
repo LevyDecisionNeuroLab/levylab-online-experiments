@@ -1,0 +1,12 @@
+config.txt:
+title
+description
+amt_keywords
+contact_email_on_error
+login_username
+login_pw
+
+[Automatic]
+database_url
+table_name
+ad_location
