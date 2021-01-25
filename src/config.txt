@@ -1,0 +1,41 @@
+[HIT Configuration]
+title = Yale financial decision making
+description = Please select the lottery you prefer
+amt_keywords = decision making, Psychology, experiment, bonous
+lifetime = 24
+us_only = true
+approve_requirement = 95
+number_hits_approved = 0
+require_master_workers = false
+contact_email_on_error = nachshon.korem@yale.edu
+ad_group = jspsych decision making
+psiturk_keywords = lotteries
+organization_name = Yale University
+browser_exclude_rule = MSIE, mobile, tablet
+allow_repeats = false
+
+[Database Parameters]
+database_url = postgres://bnitxsenorsvfo:1cd1349ed490e297cc710cb487b95df95605330397c0694517610c5e83b9c785@ec2-52-6-45-247.compute-1.amazonaws.com:5432/ddhmhflcqupleo
+table_name = FDM
+
+[Server Parameters]
+host = 0.0.0.0
+port = 22362
+cutoff_time = 30
+logfile = server.log
+loglevel = 2
+debug = true
+login_username = nachshon
+login_pw = yellow12
+threads = 1
+
+[Task Parameters]
+experiment_code_version = 1.0
+num_conds = 1
+num_counters = 1
+
+[Shell Parameters]
+launch_in_sandbox_mode = true
+
+use_psiturk_ad_server = false
+ad_location = https://nachshon1.herokuapp.com/pub

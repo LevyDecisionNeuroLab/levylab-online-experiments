@@ -1,0 +1,45 @@
+{% from "CONFIG.html" import title, experiment_imports, experiment %}
+<!doctype html>
+<html>
+    
+    <head>
+        <title>{{ title() }}</title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+
+        <script src="/static/lib/jquery-min.js" type="text/javascript"></script>
+        <script src="/static/lib/underscore-min.js" type="text/javascript"></script>
+        <script src="/static/lib/backbone-min.js" type="text/javascript"></script>
+        
+        <script src="/static/js/jspsych/jspsych.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            // These fields provided by the psiTurk Server
+            var uniqueId = "{{ uniqueId }}"; // a unique string identifying the worker/task
+            var adServerLoc = "{{ adServerLoc }}"; // the location of your ad (so you can send user back at end of experiment)
+            var mode = "{{ mode }}"; // is this running live, sandbox, or in debug mode?
+        </script>
+        
+        <!-- utils.js and psiturk.js provide the basic psiturk functionality -->
+        <script src="/static/js/utils.js" type="text/javascript"></script>
+        <script src="/static/js/psiturk.js" type="text/javascript"></script>
+        
+        <link href="/static/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+        <style>
+            .stimulus { font-size: 36px; }
+            .questions { font-size: 32px; }
+            img { width: 80%;  height: 80%; }  
+            html { font-size: 24px; }
+        </style>
+
+        {{ experiment_imports() }}
+
+    </head>
+    
+    <body style="background-color:gray;">
+        <div id='jspsych-target'></div>
+    </body>
+
+    {{ experiment() }}
+
+</html>
