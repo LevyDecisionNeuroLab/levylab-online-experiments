@@ -95,7 +95,9 @@ class HerokuSetup():
     
     # 5. Deploy current Git code to Heroku instance (sets Heroku remote JIC)
     def deploy_code(self):
-        subprocess.run(['git', 'remote', 'set-url', 'heroku', 'https://git.heroku.com/' + self.app.name + '.git/' ])
+        result = subprocess.run(['git', 'remote', 'add', 'heroku', 'https://git.heroku.com/' + self.app.name + '.git/' ], capture_output=True)
+        if 'fatal' in str(result.stdout):
+            subprocess.run(['git', 'remote', 'set-url', 'heroku', 'https://git.heroku.com/' + self.app.name + '.git/' ])
         subprocess.run(['git', 'add', '.'], stdout=subprocess.PIPE)
         subprocess.run(['git', 'commit', '-m', '"Initial commit"'], stdout=subprocess.PIPE)
         subprocess.run(['git', 'push', 'heroku', 'master'], stdout=subprocess.PIPE)
