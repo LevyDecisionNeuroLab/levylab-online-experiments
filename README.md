@@ -1,6 +1,10 @@
-# Levy Decision Lab Online Experiment Boilerplate!
+<img src="https://avatars.githubusercontent.com/u/36197097?s=200&v=4" align="right">
 
-Boilerplate code for generating the foundation of your own online experiment, as well as a setup script which uploads your code to Heroku easily and links it to the PsiTurk experiment. The experiment is setup for jsPsych + PsiTurk MTurk experiments, but the structure PsiTurk uses can easily be repurposed if you don't need MTurk. I'm working on a more concrete non-MTurk pipeline, but that will be helped much more with an actual example of a non-MTurk experiment.
+# Levy Decision Lab Online Experiment Boilerplate
+> Boilerplate code for generating the foundation of your own online psychology experiment.
+> v1.0, requires Python 3
+
+Contains setup scripts which a) build the boilerplate of a PsiTurk jsPsych online experiment and b) upload your code to Heroku easily and link it to said PsiTurk experiment. The experiment is setup for jsPsych + PsiTurk MTurk experiments, but the structure PsiTurk uses can easily be repurposed if you don't need MTurk. I'm working on a more concrete non-MTurk pipeline, but that will be helped much more with an actual example of a non-MTurk experiment.
 
 Requires Python 3. You may also need to replace `python` and `pip` in this tutorial with `python3` and `pip3` depending on your system.
 
