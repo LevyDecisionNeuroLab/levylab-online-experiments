@@ -1,6 +1,6 @@
 <img src="https://avatars.githubusercontent.com/u/36197097?s=200&v=4" align="right">
 
-# Levy Decision Lab Online Experiment Boilerplate
+# Levy Lab Online Experiment Boilerplate
 > Boilerplate code for generating the foundation of your own online psychology experiment.
 > v1.0, requires Python 3
 
