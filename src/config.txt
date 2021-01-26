@@ -39,3 +39,6 @@ launch_in_sandbox_mode = true
 
 use_psiturk_ad_server = false
 ad_location = https://nachshon1.herokuapp.com/pub
+
+[Heroku Parameters]
+app_name = NOTYETSET

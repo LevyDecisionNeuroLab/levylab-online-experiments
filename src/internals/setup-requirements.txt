@@ -1,0 +1,4 @@
+PsiTurk
+psycopg2-binary
+configparser
+heroku3
