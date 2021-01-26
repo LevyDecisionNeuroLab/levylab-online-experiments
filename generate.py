@@ -3,14 +3,26 @@ import configparser
 import shutil
 import os
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 def generate():
     """ Runs through the scripts to generate an experiment's base files """
 
-    # TODO: Copy src folder into a tmp folder
+    print(color.BOLD + "\n - [STEP 1/2] Building experiment file structure - " + color.END)
 
-    print("\nGenerating online experiment boilerplate...")
-    path = input("Path in which to build experiment folder: ")
-    folder = input("Name of experiment folder (leave blank to not encapsulate in folder): ")
+    print(color.BOLD + "\nGenerating online experiment boilerplate..." + color.END)
+    path = input("Path in which to build experiment folder: " + color.PURPLE)
+    folder = input(color.END + "Name of experiment folder (leave blank to not encapsulate in folder): " + color.PURPLE)
 
     try:
 
@@ -19,7 +31,7 @@ def generate():
         copytree('src/', 'tmp/')
 
         # Build temporary files in tmp
-        # build_config()
+        build_config()
 
         # Copy tmp folder to desired directory with new name
         fullpath = os.path.abspath(path.strip())
@@ -34,6 +46,8 @@ def generate():
             os.makedirs(experimentpath, exist_ok=True)
         copytree('tmp/', experimentpath)
 
+        print(color.GREEN + color.BOLD + '\nFINISHED! ' + color.END + 'Built experiment boilerplate at ' + color.GREEN + experimentpath + color.END + '\n')
+
     finally:
         if os.path.exists('tmp/') and os.path.isdir('tmp/'):
             shutil.rmtree('./tmp/')
@@ -45,22 +59,22 @@ def build_config():
     c = configparser.ConfigParser()
     c.read('tmp/config.txt')
 
-    print("\n - STEP 2: Building config.txt - ")
+    print(color.END + color.BOLD + "\n - [STEP 2/2] Building config.txt - " + color.END)
 
     # Experiment configuration
-    print("\nConfiguring experiment metadata...")
-    title = input("Experiment title: ")
-    description = input("Experiment description: ")
-    amt_keywords = input("Mechanical turk keywords: ")
+    print(color.END + color.BOLD + "\nConfiguring experiment metadata..." + color.END)
+    title = input("Experiment title: " + color.PURPLE)
+    description = input(color.END + "Experiment description: " + color.PURPLE)
+    amt_keywords = input(color.END + "Mechanical turk keywords: " + color.PURPLE)
     c['HIT Configuration']['title'] = title
     c['HIT Configuration']['description'] = description
     c['HIT Configuration']['amt_keywords'] = amt_keywords
 
     # Experiment admin configuration
-    print("\nConfiguring experiment user metadata...")
-    email = input("Contact email on error: ")
-    username = input("Website admin username: ")
-    password = input("Website admin password: ")
+    print(color.END + color.BOLD + "\nConfiguring experiment user metadata..." + color.END)
+    email = input("Contact email on error: " + color.PURPLE )
+    username = input(color.END + "Website admin username: " + color.PURPLE)
+    password = input(color.END + "Website admin password: " + color.PURPLE)
     c['HIT Configuration']['email_on_error'] = email
     c['Server Parameters']['login_username'] = username
     c['Server Parameters']['login_pw'] = password
