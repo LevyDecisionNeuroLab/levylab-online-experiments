@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, jsonify, Response, abort, current_app, make_response
 from jinja2 import TemplateNotFound
 from functools import wraps
-from sqlalchemy import or_
+from sqlalchemy import or_, not_
 
 from psiturk.psiturk_config import PsiturkConfig
 from psiturk.experiment_errors import ExperimentError, InvalidUsage
@@ -32,7 +32,11 @@ custom_code = Blueprint('custom_code', __name__,
 @custom_code.route('/view_data')
 @myauth.requires_auth
 def list_my_data():
-    users = Participant.query.all()
+    debug = request.args.get('debug')
+    if debug:
+        users = Participant.query.all()
+    else:
+        users = Participant.query.filter(not_(Participant.workerid.startswith('debug')))
     try:
         return render_template('list.html', participants=users)
     except TemplateNotFound:
