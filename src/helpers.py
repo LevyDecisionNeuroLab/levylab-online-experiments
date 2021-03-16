@@ -15,7 +15,7 @@ def get_datafile(participant, datatype):
         }, 
         "questiondata": {
             "function": lambda p: p.get_question_data(),
-            "headerline": "uniqueid,questionname,response"
+            "headerline": "uniqueid,questionname,response\n"
         },
         }
     ret = contents[datatype]["headerline"] + contents[datatype]["function"](participant)
