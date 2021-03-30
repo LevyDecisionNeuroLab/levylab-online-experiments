@@ -32,7 +32,7 @@ class HerokuSetup():
     def __init__(self):
         # On init, just check to see if git exists
         self.has_git = os.path.isdir('.git')
-        self.c = configparser.ConfigParser(comment_prefixes='/', allow_no_value=True)
+        self.c = configparser.ConfigParser()
         self.c.read('config.txt')
 
     # 1. Sets up the git repo to push to heroku

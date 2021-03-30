@@ -65,10 +65,8 @@ def build_config():
     print(color.END + color.BOLD + "\nConfiguring experiment metadata..." + color.END)
     title = input("Experiment title: " + color.PURPLE)
     description = input(color.END + "Experiment description: " + color.PURPLE)
-    amt_keywords = input(color.END + "Mechanical turk keywords: " + color.PURPLE)
     c['HIT Configuration']['title'] = title
     c['HIT Configuration']['description'] = description
-    c['HIT Configuration']['amt_keywords'] = amt_keywords
 
     # Experiment admin configuration
     print(color.END + color.BOLD + "\nConfiguring experiment user metadata..." + color.END)
