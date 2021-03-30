@@ -11,81 +11,22 @@
         <script src="/static/lib/underscore-min.js" type="text/javascript"></script>
         <script src="/static/lib/backbone-min.js" type="text/javascript"></script>
         
-        <script src="/static/js/jspsych/jspsych.js" type="text/javascript"></script>
-        
         <script type="text/javascript">
             // These fields provided by the psiTurk Server
             var uniqueId = "{{ uniqueId }}"; // a unique string identifying the worker/task
             var adServerLoc = "{{ adServerLoc }}"; // the location of your ad (so you can send user back at end of experiment)
             var mode = "{{ mode }}"; // is this running live, sandbox, or in debug mode?
+            var PSITURK_ENABLED = true;
         </script>
         
         <!-- utils.js and psiturk.js provide the basic psiturk functionality -->
         <script src="/static/js/utils.js" type="text/javascript"></script>
         <script src="/static/js/psiturk.js" type="text/javascript"></script>
-        
-        <link href="/static/css/jspsych.css" rel="stylesheet" type="text/css"></link>
-        <style>
-            .stimulus { font-size: 36px; }
-            .questions { font-size: 32px; }
-            img { width: 80%;  height: 80%; }  
-            html { font-size: 24px; }
-        </style>
-
-        <!-- ========== YOUR IMPORTS HERE ============= -->
-
-        <script src="/static/js/jspsych/plugins/jspsych-html-keyboard-response.js" type="text/javascript"></script>
-        <script src="/static/js/jspsych/plugins/jspsych-image-keyboard-response.js" type="text/javascript"></script>
-        <script src="/static/js/jspsych/plugins/jspsych-survey-html-form.js" type="text/javascript"></script>
-        <script src="/static/js/jspsych/plugins/jspsych-survey-multi-choice.js" type="text/javascript"></script>
-        <script src="/static/js/jspsych/plugins/jspsych-survey-likert.js" type="text/javascript"></script>
-        <script src="/static/js/jspsych/plugins/jspsych-call-function.js" type="text/javascript"></script>
-
-        <!-- =========================================== -->
 
     </head>
     
-    <body style="background-color:gray;">
-        <div id='jspsych-target'></div>
+    <body>
+        <!-- PUT YOUR EXPERIMENT BODY HERE! -->
     </body>
-
-    <!-- ========== YOUR EXPERIMENT SCRIPT HERE ============= -->
-
-    <script>
-
-        /* Load psiturk */
-        var psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
-
-        /* Define images to pre-load */
-        var images = [];
-
-        /* Define the experiment jsPsych timeline */
-        var timeline = [];
-
-        /* define welcome message trial */
-        var welcome = {
-          type: "html-keyboard-response",
-          stimulus: "The experiment begins here!"
-        };
-        timeline.push(welcome);
-
-        /* Start the experiment (PsiTurk instructions pages first) */
-        jsPsych.init({
-            preload_images: images,
-            timeline: timeline,
-            display_element: 'jspsych-target',
-            on_finish: function() {
-                psiturk.saveData({
-                    success: function() { psiturk.completeHIT(); }
-                });
-            },
-            on_data_update: function(data) {
-                psiturk.recordTrialData(data);
-            }
-        });
-
-    </script>
-
-    <!-- =============================================== -->
 
 </html>

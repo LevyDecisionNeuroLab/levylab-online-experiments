@@ -18,12 +18,21 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
+"""
+Class for setting up an experiment on Heroku.
+
+Make sure to run pip install -r internals/setup-requirements.txt before 
+attempting to execute this script! After you do that, you can run this script
+using `python internals/setup.py` from the root directory of your experiment
+to push your configured experiment up to Heroku. Make sure you move it into
+the Levy Lab account from the Heroku dashboard so your account is not billed!
+"""
 class HerokuSetup():
 
     def __init__(self):
         # On init, just check to see if git exists
         self.has_git = os.path.isdir('.git')
-        self.c = configparser.ConfigParser()
+        self.c = configparser.ConfigParser(comment_prefixes='/', allow_no_value=True)
         self.c.read('config.txt')
 
     # 1. Sets up the git repo to push to heroku
@@ -73,8 +82,7 @@ class HerokuSetup():
         self.c['Database Parameters']['table_name'] = 'experiment_table'
         self.c['Server Parameters']['host'] = '0.0.0.0'
         self.c['Server Parameters']['threads'] = '1'
-        self.c['Shell Parameters']['ad_location'] = 'https://' + self.app.domains()[0].hostname + '/pub'
-        self.c['Shell Parameters']['use_psiturk_ad_server'] = 'false'
+        self.c['Shell Parameters']['ad_url'] = 'https://' + self.app.domains()[0].hostname + '/pub'
         self.c['Heroku Parameters']['app_name'] = self.app.name
         with open('config.txt', 'w') as out:
             self.c.write(out)
@@ -89,7 +97,7 @@ class HerokuSetup():
         for section in sections:
             for item in CONFIG.items(section):
                 new_config[item[0]] = item[1]
-        new_config['ON_HEROKU'] = True
+        new_config['ON_CLOUD'] = 1
         self.app.update_config(new_config)
         print('Built remote Heroku config from AWS and PsiTurk accounts found in local ' + color.BOLD + '.psiturkconfig' + color.END)
     

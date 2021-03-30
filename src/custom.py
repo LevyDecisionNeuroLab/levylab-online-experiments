@@ -28,6 +28,8 @@ custom_code = Blueprint('custom_code', __name__,
 
 # ----------------------------------------------
 # Accessing data
+# This simply injects data into the `list.html` template to view the users in
+# the database and data about their current status.
 # ----------------------------------------------
 @custom_code.route('/view_data')
 @myauth.requires_auth
@@ -45,6 +47,8 @@ def list_my_data():
 
 # ----------------------------------------------
 # Downloading data
+# This endpoint returns a CSV with the desired data type from the specified
+# participant. This is used in `list.html` for each of the download buttons.
 # ----------------------------------------------
 @custom_code.route('/get_data')
 @myauth.requires_auth
@@ -56,3 +60,33 @@ def get_data():
     output.headers["Content-Disposition"] = "attachment; filename={}-{}.csv".format(workerId,data_type)
     output.headers["Content-Type"] = "text/csv"
     return output
+
+# ----------------------------------------------
+# Computing the bonus
+# Use this to automatically set a bonus, which can then automatically be applied
+# to a user when you approve their HIT using a script. This has to be server
+# side so users can't just easily give themselves massive bonuses with inspect
+# element. It's probably a good idea to provide an explicit cap on the bonus
+# using a min() function call so that if a user does manage to edit their 
+# experiment data, they still can't give themselves massive bonuses.
+# ----------------------------------------------
+@custom_code.route('/compute_bonus')
+def compute_bonus():
+    uniqueId = request.args['uniqueId']
+    try:
+        user = Participant.query.filter(Participant.uniqueid == uniqueId).one()
+        user_data = loads(user.datastring)
+        
+        #! Your bonus computing logic here!
+        # A common bonus technique is to continually save a running bonus in the
+        # data and then take the last data row from the user_data object and
+        # set the bonus from that.
+        bonus = 0
+
+        user.bonus = bonus
+        db_session.add(user)
+        db_session.commit()
+        resp = {"bonusComputed": "success"}
+    except:
+        resp = {"bonusComputed": "failure"}
+    return jsonify(**resp)
