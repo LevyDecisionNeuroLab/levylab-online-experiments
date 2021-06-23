@@ -107,7 +107,7 @@ class HerokuSetup():
         if 'fatal' in str(result.stdout):
             subprocess.run(['git', 'remote', 'set-url', 'heroku', 'https://git.heroku.com/' + self.app.name + '.git/' ])
         subprocess.run(['git', 'add', '.'], stdout=subprocess.PIPE)
-        subprocess.run(['git', 'commit', '-m', '"Initial commit"'], stdout=subprocess.PIPE)
+        subprocess.run(['git', 'commit', '-m', 'Initial commit'], stdout=subprocess.PIPE)
         subprocess.run(['git', 'push', 'heroku', 'master'], stdout=subprocess.PIPE)
 
     # START HERE: Timeline for each init task.
