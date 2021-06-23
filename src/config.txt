@@ -119,7 +119,7 @@ logfile = server.log
 loglevel = 2
 
 # Controls whether the dashboard is enabled
-enable_dashboard = false
+enable_dashboard = true
 
 # Controls whether the scheduler will run. If true, then num_threads must be 1
 # Be very careful to only have one scheduler run for a given study in any
@@ -143,7 +143,7 @@ threads = 1
 # to set unless using a secure function.
 # e.g.,
 #     secret_key = 'this is my secret key which is hard to guess, i should change this'
-;secret_key =
+secret_key = SUPER_SECRET_KEY_ON_SECURE
 
 # The psiturk (gunicorn) server can optionally serve traffic over https. This is
 # normally not necessary if the psiturk server is set up behind a reverse proxy

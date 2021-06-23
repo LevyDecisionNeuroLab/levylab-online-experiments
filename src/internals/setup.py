@@ -96,7 +96,7 @@ class HerokuSetup():
         sections = ['psiTurk Access', 'AWS Access']
         for section in sections:
             for item in CONFIG.items(section):
-                new_config[item[0]] = item[1]
+                new_config[item[0].upper()] = item[1]
         new_config['ON_CLOUD'] = 1
         self.app.update_config(new_config)
         print('Built remote Heroku config from AWS and PsiTurk accounts found in local ' + color.BOLD + '.psiturkconfig' + color.END)
