@@ -110,12 +110,17 @@
                     </button>
                 </div>
 
+                <div style="color: white;">
+                    <input id="recontact" type="checkbox" name="contact" />
+                    <i>&nbsp;I would like to be invited to participate in future studies with the Yale Decision Neuroscience Lab.</i>
+                </div>
+
                 <hr>
                 <h4>Do you understand and consent to these terms?</h4>
                 <br>
 
                 <center>
-                    <button type="button" class="btn btn-primary btn-lg" onClick="window.location='/exp?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}'">
+                    <button type="button" class="btn btn-primary btn-lg" onClick="window.location='/exp?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}&recontact=' + document.getElementById('recontact').checked;">
                     <span class="glyphicon glyphicon-ok"></span> I agree 
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
