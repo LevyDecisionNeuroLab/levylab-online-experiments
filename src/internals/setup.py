@@ -93,13 +93,13 @@ class HerokuSetup():
         CONFIG = PsiturkConfig()
         CONFIG.load_config()
         new_config = {}
-        sections = ['psiTurk Access', 'AWS Access']
+        sections = ['AWS Access']
         for section in sections:
             for item in CONFIG.items(section):
                 new_config[item[0].upper()] = item[1]
         new_config['ON_CLOUD'] = 1
         self.app.update_config(new_config)
-        print('Built remote Heroku config from AWS and PsiTurk accounts found in local ' + color.BOLD + '.psiturkconfig' + color.END)
+        print('Built remote Heroku config from AWS account found in local ' + color.BOLD + '.psiturkconfig' + color.END)
     
     # 5. Deploy current Git code to Heroku instance (sets Heroku remote JIC)
     def deploy_code(self):
