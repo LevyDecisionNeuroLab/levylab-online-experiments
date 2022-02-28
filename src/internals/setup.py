@@ -82,6 +82,7 @@ class HerokuSetup():
         self.c['Database Parameters']['table_name'] = 'experiment_table'
         self.c['Server Parameters']['host'] = '0.0.0.0'
         self.c['Server Parameters']['threads'] = '1'
+        self.c['HIT Configuration']['ad_url'] = 'https://' + self.app.domains()[0].hostname + '/pub'
         self.c['Shell Parameters']['ad_url'] = 'https://' + self.app.domains()[0].hostname + '/pub'
         self.c['Heroku Parameters']['app_name'] = self.app.name
         with open('config.txt', 'w') as out:
